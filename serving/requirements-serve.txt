@@ -1,0 +1,16 @@
+# Serving dependencies (Docker container)
+
+# ── vLLM Inference Engine ─────────────────────
+vllm==0.6.0             # Pinned for stability
+ray>=2.9.0              # vLLM distributed serving
+
+# ── API Server ────────────────────────────────
+fastapi==0.115.0
+uvicorn[standard]==0.31.0
+pydantic==2.9.2
+python-multipart
+
+# ── Utils ─────────────────────────────────────
+python-dotenv
+psutil
+aiofiles

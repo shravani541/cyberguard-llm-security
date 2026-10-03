@@ -1,0 +1,69 @@
+# ============================================================
+# QLoRA Fine-Tuning Config — Code Security Analyst LLM
+# Model: Llama 3.2-3B | Technique: QLoRA (4-bit) | Unsloth
+# ============================================================
+
+model:
+  base_model: "unsloth/Llama-3.2-3B-Instruct"   # Unsloth-optimized version
+  max_seq_length: 2048
+  dtype: null                                     # Auto-detect (float16 on T4)
+  load_in_4bit: true
+
+lora:
+  r: 16                     # LoRA rank — balance between params and quality
+  lora_alpha: 32            # Scaling factor (2x rank is standard)
+  lora_dropout: 0.05
+  bias: "none"
+  use_gradient_checkpointing: "unsloth"  # Unsloth's optimized checkpointing
+  random_state: 42
+  use_rslora: false         # Set true for more stable training at higher rank
+  loftq_config: null
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+
+training:
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 4       # Effective batch = 8
+  warmup_steps: 10
+  num_train_epochs: 3
+  max_steps: -1                        # -1 = use epochs, else override
+  learning_rate: 2.0e-4
+  fp16: false                          # T4 supports fp16
+  bf16: false                          # A100/H100 supports bf16 — auto-detected
+  logging_steps: 10
+  optim: "adamw_8bit"                  # 8-bit Adam saves memory
+  weight_decay: 0.01
+  lr_scheduler_type: "cosine"
+  seed: 42
+  output_dir: "./outputs/checkpoints"
+  save_strategy: "epoch"
+  eval_strategy: "epoch"
+  load_best_model_at_end: true
+  metric_for_best_model: "eval_loss"
+  report_to: "mlflow"                  # Auto-log to MLflow
+
+data:
+  dataset_path: "./data/security_instruct_dataset.jsonl"
+  eval_split: 0.1
+  dataset_text_field: "text"
+  max_train_samples: null              # null = use all
+
+mlflow:
+  tracking_uri: "http://localhost:5000"
+  experiment_name: "llama3-security-analyst-qlora"
+  run_name_prefix: "qlora-v"
+
+huggingface:
+  push_to_hub: true
+  hub_model_id: "your-username/llama3-security-analyst"  # CHANGE THIS
+  hub_token_env: "HF_TOKEN"
+
+output:
+  merged_model_dir: "./outputs/merged_model"
+  gguf_dir: "./outputs/gguf"

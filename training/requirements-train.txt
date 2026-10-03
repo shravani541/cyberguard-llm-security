@@ -1,0 +1,36 @@
+# Training dependencies (Colab/cloud GPU)
+# Install order matters for Unsloth
+
+# ── Core ML ───────────────────────────────────
+torch==2.4.1
+transformers==4.46.0
+datasets==3.0.1
+peft==0.13.0
+trl==0.11.0
+accelerate==0.34.2
+bitsandbytes==0.44.1
+
+# ── Unsloth (install separately — see README) ─
+# pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
+# Or for stable:
+# pip install unsloth
+
+# ── MLflow ────────────────────────────────────
+mlflow==2.16.2
+psutil
+
+# ── Evaluation ────────────────────────────────
+rouge-score==0.1.2
+bert-score==0.3.13
+sentencepiece
+sacrebleu
+
+# ── Data ──────────────────────────────────────
+datasets>=3.0.0
+pandas
+numpy
+
+# ── Config / Utils ────────────────────────────
+pyyaml
+python-dotenv
+tqdm

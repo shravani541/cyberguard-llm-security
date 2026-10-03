@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Model checkpoints & weights (keep repo lightweight, push weights to Hugging Face)
+outputs/
+checkpoints/
+*.pt
+*.bin
+*.safetensors
+*.gguf
+lora_adapter/
+merged_model/
+*.zip
+*.tar.gz
+
+# MLflow tracking artifacts & DBs
+mlruns/
+*.db
+mlflow.db
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
