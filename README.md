@@ -3,8 +3,8 @@
 > **Fine-tune Llama 3.2-3B to detect, explain, and fix code vulnerabilities.**
 > A novel open-source security analyst LLM that goes beyond flagging — it **teaches you why**.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/)
-[![HuggingFace Model](https://img.shields.io/badge/🤗%20Model-CyberGuard-yellow)](https://huggingface.co/)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shravani541/cyberguard-llm-security/blob/main/notebooks/CyberGuard_RunAll.ipynb)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-shravani541%2Fcyberguard--llm--security-blue?logo=github)](https://github.com/shravani541/cyberguard-llm-security)
 [![MLflow](https://img.shields.io/badge/Tracked%20with-MLflow-blue)](https://mlflow.org/)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
